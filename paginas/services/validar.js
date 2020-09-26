@@ -1,9 +1,10 @@
 
 import { ValidarDataNascimento } from './ValidarDataNascimento.js';
 
+
 const retornarMensagemDeErro = (tipo, validity) => {
     let mensagemDeErro = "";
-    const tiposDeErro = ["valueMissing", "typeMismatch","tooShort"];
+    const tiposDeErro = ["valueMissing", "typeMismatch","tooShort","rangeUnderflow"];
     const mensagensDeErro = {
         email: {
             valueMissing: " O e-mail é necessário",
@@ -12,6 +13,29 @@ const retornarMensagemDeErro = (tipo, validity) => {
         senha: {
             valueMissing: " A senha é necessário",
             tooShort: "Necessário 4 caracteres mínimo"
+        },
+        dataNascimento: {
+            valueMissing: " A data de nascimento é necessário",
+            rangeUnderflow: "Data mínima 1901",
+            customError: "A idade mínima é 18 anos"
+        },
+        cpf: {
+            valueMissing: " O cpf é necessário",
+        },
+        rg: {
+            valueMissing: " O rg é necessário",
+        },
+        cep: {
+            valueMissing: " O cep é necessário",
+        },
+        cidade: {
+            valueMissing: " A cidade é necessário",
+        },
+        logradouro: {
+            valueMissing: " O logradouro é necessário",
+        },
+        estado: {
+            valueMissing: " O estado é necessário",
         }
     };
 
@@ -20,6 +44,8 @@ const retornarMensagemDeErro = (tipo, validity) => {
            mensagemDeErro = mensagensDeErro[tipo][erro];
         }
     });
+
+    console.log(mensagemDeErro);
     return mensagemDeErro;
 
 };
@@ -50,7 +76,7 @@ export const validarInput = (input,adicionarErro = true) => {
    const tipo = input.dataset.tipo;
   
    const validadoresEspecificos = {
-       dataNascimento: input => ValidarDataNascimento(input)
+       dataNascimento: input => ValidarDataNascimento(input),
    };
    if(validadoresEspecificos[tipo]){
        validadoresEspecificos[tipo](input);
