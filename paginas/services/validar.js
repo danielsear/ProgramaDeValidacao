@@ -3,6 +3,7 @@
 //required= restringe cada campo a ser obrigatório ser preenchido, sua inserção de dados
 //data-tipo= email, senha, cidade,...  define um modulo no Html de comunicação com os js. do campo e área
 //type= email xxx@xxx.xx, password senha, date data + min= data minima, submit botao
+// cep  pattern="[\d]{5}-?[\d]{3}", 5 digitos (- ifen opcional) 3digitos
 
 import { ValidarDataNascimento } from './ValidarDataNascimento.js';
 import {validarCpf} from './ValidarCpf.js';
@@ -12,7 +13,7 @@ const retornarMensagemDeErro = (tipo, validity) => {
     let mensagemDeErro = "";
 
     const tiposDeErro = ["valueMissing", "typeMismatch","tooShort","rangeUnderflow",
-    "customError"];
+    "customError", "patternMismatch"];
    
     //tipos com suas msgs de erro por meio dos seus respectivos erros
     const mensagensDeErro = {
@@ -38,6 +39,7 @@ const retornarMensagemDeErro = (tipo, validity) => {
         },
         cep: {
             valueMissing: " O cep é necessário",
+            patternMismatch:"Este não é um cep válido"
         },
         cidade: {
             valueMissing: " A cidade é necessário",
@@ -72,7 +74,7 @@ VALIDITYSTATE {
 */
 
 export const validarInput = (input,adicionarErro = true) => {
-   // console.log(input.validity); olhando para cada erro possível do validity
+  // console.log(input.validity); olhando para cada erro possível do validity
    /*
     if(input.id == 'dataNascimento'){   fazer individualmente para cada caso queira individualmente
         ValidarDataNascimento();

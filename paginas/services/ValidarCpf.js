@@ -13,10 +13,11 @@ const cpfNumerosRepetidos = (cpf) => {
         "99999999999"
     ];
     return cpfsInvalidos.includes(cpf);
-    // ele inclui caso seja verdadeiro      
-}
+    // ele inclui caso seja verdadeiro    
+   
+};
 
-const calcularTotal = (multiplicador) => (resultado, numeroAtual) => resultado + numeroAtual * multiplicador--;
+const calcularTotal = multiplicador => (resultado, numeroAtual) => resultado + numeroAtual * multiplicador--;
 
 const calcularDigito = (parteCpf, multiplicador) => {
     // total=primeiro numero do cpf * (começa com 10 pro primeiro, 11 pro segundo) + segundo * 9 ou 10 + ...+ nono ou decimo *2
@@ -25,11 +26,12 @@ const calcularDigito = (parteCpf, multiplicador) => {
     //fazer para os dois ultimos digitos sendo o primeiro começa com multiplicador 10, segundo 11
     const total = parteCpf.reduce(calcularTotal(multiplicador), 0);// reduce percorre o array chando calcularTotal( multiplicador, valor inicial), retorna o resultado e leva denovo para cada posição faz a conta retornando o resultado e  + o resultado da anterior
     const resto = total % 11;
+
     const digito = 11 - resto;
     // assim o digito final tendem a ser o mesmo digito da posição 
-
+   
+  //digitos acima de 9 não entrão na conta pois queremos apenas um digito, 0 a 9
     if (resto > 9) {
-        //digitos acima de 9 não entrão na conta pois queremos apenas um digito, 0 a 9
         digito = 0;
     }
 
