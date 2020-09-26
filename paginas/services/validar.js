@@ -4,9 +4,11 @@
 //data-tipo= email, senha, cidade,...  define um modulo no Html de comunicação com os js. do campo e área
 //type= email xxx@xxx.xx, password senha, date data + min= data minima, submit botao
 // cep  pattern="[\d]{5}-?[\d]{3}", 5 digitos (- ifen opcional) 3digitos
+// por meio do site olhar o cep e tuda informação referente > viacep.com.br
 
 import { ValidarDataNascimento } from './ValidarDataNascimento.js';
 import {validarCpf} from './ValidarCpf.js';
+import {recuperarEndereço} from './RecuperarEndereco.js';
 
 const retornarMensagemDeErro = (tipo, validity) => {
    
@@ -90,7 +92,8 @@ export const validarInput = (input,adicionarErro = true) => {
   
    const validadoresEspecificos = { 
        dataNascimento: input => ValidarDataNascimento(input),//pra data
-       cpf: input => validarCpf(input) //para o cpf
+       cpf: input => validarCpf(input), //para o cpf
+       cep: input => recuperarEndereço(input),
    };
 
    if(validadoresEspecificos[tipo]){
