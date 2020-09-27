@@ -9,6 +9,7 @@
 import { ValidarDataNascimento } from './ValidarDataNascimento.js';
 import {validarCpf} from './ValidarCpf.js';
 import {recuperarEndereço} from './RecuperarEndereco.js';
+import {validarPreco} from './ValidarPreco.js';
 
 const retornarMensagemDeErro = (tipo, validity) => {
    
@@ -41,7 +42,8 @@ const retornarMensagemDeErro = (tipo, validity) => {
         },
         cep: {
             valueMissing: " O cep é necessário",
-            patternMismatch:"Este não é um cep válido"
+            patternMismatch:"Este não é um cep válido",
+            customError: "Este cep não é válido"
         },
         cidade: {
             valueMissing: " A cidade é necessário",
@@ -51,6 +53,13 @@ const retornarMensagemDeErro = (tipo, validity) => {
         },
         estado: {
             valueMissing: " O estado é necessário",
+        },
+        preco: {
+            valueMissing: "O preço é necessário",
+            customError: "Produto sem preço, por favor insira o preço corretamente",
+        },
+        nomeProduto: {
+            valueMissing: "O nome é necessário",
         }
     };
 
@@ -94,6 +103,7 @@ export const validarInput = (input,adicionarErro = true) => {
        dataNascimento: input => ValidarDataNascimento(input),//pra data
        cpf: input => validarCpf(input), //para o cpf
        cep: input => recuperarEndereço(input),
+       preco: input =>validarPreco(input),
    };
 
    if(validadoresEspecificos[tipo]){

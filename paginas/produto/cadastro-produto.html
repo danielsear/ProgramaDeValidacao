@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../style/theme.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script src="../services/App.js" type="module"></script>
+    <script src="https://github.com/codermarcos/simple-mask-money/releases/download/v3.0.0/simple-mask-money.js"></script>
+
     <title>Cadastro de Produto</title>
   </head>
 
@@ -17,13 +21,13 @@
             <label class="label" for="preco"
               >Preço <span class="info">(Necessário)</span></label
             >
-            <input class="input" name="preco" id="preco" autofocus />
+            <input class="input" name="preco" id="preco" autofocus required data-tipo="preco" />
           </div>
           <div class="input-container">
             <label class="label" for="nomeProduto"
               >Nome <span class="info">(Necessário)</span></label
             >
-            <input class="input" name="nomeProduto" id="nomeProduto" />
+            <input class="input" name="nomeProduto" id="nomeProduto" required data-tipo="nomeProduto" />
           </div>
           <div class="input-container">
             <label class="label" for="descricaoProduto">Descrição</label>
